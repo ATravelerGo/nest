@@ -1,22 +1,32 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  CreateDateColumn,
+  Entity,
+  OneToMany,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
+import { Property } from '../../property/entities/property.entity';
 
 @Entity()
 export class User {
-  @PrimaryGeneratedColumn('uuid')
+  @PrimaryGeneratedColumn()
   id: string;
 
   @Column()
-  name: string;
+  firstName: string;
+
+  @Column()
+  lastName: string;
 
   @Column()
   email: string;
 
   @Column()
-  phone: string;
+  avatarUrl: string;
 
-  @Column()
-  address: string;
+  @CreateDateColumn()
+  createdAt: Date;
 
-  @Column()
-  age: number;
+  @OneToMany(() => Property, (property) => property.user)
+  properties: Property[];
 }

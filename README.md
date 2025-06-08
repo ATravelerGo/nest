@@ -102,3 +102,7 @@ Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
 
 @nestjs/mapped-types 是 NestJS 提供的一个官方工具库，用于从已有的 DTO 自动生成新的 DTO 类型，常用于：
 ✅ 生成部分字段可选 / 拷贝字段 / 继承验证规则等场景
+
+
+
+@ManyToOne（）会自动创建外键  就不用再次@JoinColumn（）
