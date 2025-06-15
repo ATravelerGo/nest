@@ -1,12 +1,15 @@
 import {
   Column,
-  Entity, JoinColumn, ManyToOne,
-  OneToMany,
+  Entity,
+  JoinColumn,
+  ManyToMany,
+  ManyToOne,
   OneToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import { PropertyFeature } from './propertyFeature.entity';
-import { User } from '../../user/entities/user.entity';
+import { User } from './user.entity';
+import { PropertyType } from './propertyType.entity';
 
 @Entity()
 export class Property {
@@ -32,4 +35,10 @@ export class Property {
   @ManyToOne(() => User, (user) => user.properties)
   @JoinColumn()
   user: User;
+
+  @ManyToMany(() => User, (user) => user.likedProperties)
+  likedBy: User[];
+
+  @ManyToOne(() => PropertyType)
+  type: PropertyType;
 }

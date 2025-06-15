@@ -2,10 +2,13 @@ import {
   Column,
   CreateDateColumn,
   Entity,
+  JoinColumn,
+  JoinTable,
+  ManyToMany,
   OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
-import { Property } from '../../property/entities/property.entity';
+import { Property } from './property.entity';
 
 @Entity()
 export class User {
@@ -29,4 +32,8 @@ export class User {
 
   @OneToMany(() => Property, (property) => property.user)
   properties: Property[];
+
+  @ManyToMany(() => Property, (property) => property.likedBy)
+  @JoinTable({ name: 'user_liked_properties' }) // 特别注意  这里是JoinTable
+  likedProperties: Property[];
 }

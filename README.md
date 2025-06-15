@@ -106,3 +106,23 @@ Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
 
 
 @ManyToOne（）会自动创建外键  就不用再次@JoinColumn（）
+
+> 给数据库中的表增加测试数据
+
+1. pnpm add typeorm-extension @faker-js/faker
+2. 创建工厂函数
+```ts
+import { setSeederFactory } from 'typeorm-extension';
+import { User } from '../entities/user.entity';
+import { faker } from '@faker-js/faker';
+
+export const UserFactory = setSeederFactory(User, () => {
+  const user = new User();
+  user.firstName = faker.person.firstName();
+  user.lastName = faker.person.lastName();
+  user.email = faker.internet.email();
+  user.avatarUrl = faker.image.avatar();
+  return user;
+});
+```
+3.
