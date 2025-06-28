@@ -125,4 +125,4 @@ export const UserFactory = setSeederFactory(User, () => {
   return user;
 });
 ```
-3.
+3.只要实体之间存在关系（比如 @ManyToOne、@OneToOne、@OneToMany、@ManyToMany），即使你代码里没有直接“使用”那个被关联的实体，只要它在另一个实体里出现了，你就必须在 TypeOrmModule.forFeature() 中注册它。
