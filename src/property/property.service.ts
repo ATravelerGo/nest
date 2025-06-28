@@ -14,8 +14,8 @@ export class PropertyService {
     return await this.propertyRepository.save(createPropertyDto);
   }
 
-  findAll() {
-    return `This action returns all property`;
+  async findAll() {
+    return await this.propertyRepository.find();
   }
 
   findOne(id: number) {
