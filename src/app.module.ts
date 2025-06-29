@@ -16,11 +16,11 @@ import * as process from 'node:process';
       expandVariables: true, //env文件里可以互相引用
       load: [dbConfig, dbConfigProduction], //最好加上，可以gpt问下 配合registerAs使用
     }),
-    UserModule,
     TypeOrmModule.forRootAsync({
       useFactory:
         process.env.NODE_ENV === 'production' ? dbConfigProduction : dbConfig,
     }),
+    UserModule,
     PropertyModule,
   ],
   controllers: [AppController],
