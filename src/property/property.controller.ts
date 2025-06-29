@@ -6,10 +6,12 @@ import {
   Patch,
   Param,
   Delete,
+  Query,
 } from '@nestjs/common';
 import { PropertyService } from './property.service';
 import { CreatePropertyDto } from './dto/create-property.dto';
 import { UpdatePropertyDto } from './dto/update-property.dto';
+import { PaginationPropertyDto } from './dto/pagination-property.dto';
 
 @Controller('property')
 export class PropertyController {
@@ -21,8 +23,8 @@ export class PropertyController {
   }
 
   @Get()
-  findAll() {
-    return this.propertyService.findAll();
+  findAll(@Query() paginationPropertyDto: PaginationPropertyDto) {
+    return this.propertyService.findAll(paginationPropertyDto);
   }
 
   @Get(':id')
