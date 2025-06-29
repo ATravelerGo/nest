@@ -11,6 +11,7 @@ export class AppController {
 
   @Get()
   getHello(): string {
+    //this.configService.get('DB_URL')也能访问
     return this.configService.get('dbConfig.dev.type') ?? '你好呀';
   }
 }
