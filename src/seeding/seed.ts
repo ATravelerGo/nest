@@ -1,14 +1,22 @@
 import { DataSource, DataSourceOptions } from 'typeorm';
 import { runSeeders, SeederOptions } from 'typeorm-extension';
-import dbConfig from '../config/db.config';
 import { PropertyFactory } from './property.factory';
 import { PropertyFeatureFactory } from './propertyFeature.factory';
 import { UserFactory } from './user.factory';
 import { MainSeeder } from './main.seeder';
 import * as process from 'node:process';
+import { User } from '../entities/user.entity';
+import { Property } from '../entities/property.entity';
+import { PropertyType } from '../entities/propertyType.entity';
+import { PropertyFeature } from '../entities/propertyFeature.entity';
 
 const options: DataSourceOptions & SeederOptions = {
-  ...(dbConfig() as DataSourceOptions),
+  ...({
+    type: 'postgres',
+    url: 'postgresql://neondb_owner:npg_FWB2gNiR6hVx@ep-winter-snowflake-a8x413o4-pooler.eastus2.azure.neon.tech/neondb?sslmode=require&channel_binding=require',
+    entities: [User, Property, PropertyType, PropertyFeature], // ✅,最好这样写，如果脱离nestjs的话 最好这样写
+    synchronize: true,
+  } as DataSourceOptions),
   factories: [PropertyFactory, PropertyFeatureFactory, UserFactory],
   seeds: [MainSeeder],
 };
