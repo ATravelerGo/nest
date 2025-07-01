@@ -5,6 +5,7 @@ import { UserModule } from './user/user.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { PropertyModule } from './property/property.module';
 import { ConfigModule } from '@nestjs/config';
+import { AuthModule } from './auth/auth.module';
 import dbConfig from './config/db.config';
 import dbConfigProduction from './config/db.config.production';
 import * as process from 'node:process';
@@ -22,6 +23,7 @@ import * as process from 'node:process';
     }),
     UserModule,
     PropertyModule,
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],

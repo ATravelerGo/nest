@@ -9,6 +9,7 @@ import { LoggerMiddleWare } from '../middleware/LoggerMiddleWare';
   controllers: [UserController],
   providers: [UserService],
   imports: [TypeOrmModule.forFeature([User])],
+  exports: [UserService],
 })
 export class UserModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
