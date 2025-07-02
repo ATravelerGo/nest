@@ -130,3 +130,6 @@ export const UserFactory = setSeederFactory(User, () => {
 4.鉴权
 pnpm add @nestjs/passport passport passport-local
 pnpm add -D @types/passport-local
+
+pnpm add @nestjs/jwt passport-jwt
+pnpm add -D @types/passport-jwt
